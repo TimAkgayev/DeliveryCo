@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>DeliveryCo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}<link rel="stylesheet" type="text/css" href="{%static 'deliveryco/css/styles.css' %}" />
+
+
+    {% block styleblock %} 
+    
+    {% endblock styleblock %}
+    
+    {% block scriptblock %} 
+    
+    {% endblock scriptblock %}
+    
+</head>
+
+<body>
+<header>
+<div class = "MainMenu">
+
+    <div>
+<a href="{% url 'deliveryco:index' %}">DeliveryCo</a> 
+        </div>
+
+    <div>
+<a href="{% url 'deliveryco:orders' %}"> Orders </a>
+        </div>
+
+
+</div>
+
+</header>
+
+<main>
+    
+{% block content %} {% endblock content %}
+{% block endbody %} {% endblock endbody %}
+    
+</main>
+    
+<footer>
+    <div>DeliveryCo.</div>
+</footer>
+</body>
+
+    
+</html>

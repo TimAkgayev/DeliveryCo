@@ -1,0 +1,15 @@
+{% extends "deliveryco/base.html" %}
+
+{% block content %}
+
+<p>Orders</p>
+
+<ul>
+    {% for order in orders %}
+        <li> <a href="{% url 'deliveryco:order_particular' order.orderNumber %}">{{order}}</li>
+    {%empty%}
+        <li>No orders have been added yet. </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends 'deliveryco/base.html' %}
+
+
+
+{%block scriptblock%}
+{%endblock scriptblock%}
+
+{%block styleblock%}
+
+<style>
+
+</style>
+{%endblock styleblock%}
+
+
+
+{% block content %}
+
+
+
+<div class = "center_page">
+    <h2> {{item}} </h2>
+    
+    {%load static%}<img src="{%static 'deliveryco/images/'%}{{item.itemImage}}">
+
+    <div >
+        <p> Item Number: {{item.itemID}} </p>
+
+        <p> Item Description: {{ item.itemDescription }} </p>
+
+        <p> Item Weight: {{ item.itemWeight }} </p>
+    </div>
+    
+    <a href = "{%url 'deliveryco:order_particular' item.itemID %}" class = "OrderNowButton">Order Now</a>
+</div>
+
+{% endblock content %}
