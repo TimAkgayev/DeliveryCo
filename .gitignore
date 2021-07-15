@@ -1,2 +1,7 @@
 env_deliveryco
 db.sqlite3
+media/*
+!media/.gitkeep
+deliveryco/__pycache__
+deliveryco/migrations
+main_deliveryco/__pycache__
