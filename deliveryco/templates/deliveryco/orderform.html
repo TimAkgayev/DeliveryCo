@@ -1,0 +1,26 @@
+{% extends "deliveryco/base.html" %}
+
+{%block content%}
+
+    <p> Your Order: </p>
+
+<form action = "{% url 'deliveryco:new_order' item.itemID %}" method ='post'>
+
+     {%load static%}<img src="{%static 'deliveryco/images/'%}{{item.itemImage}}">
+    
+     <div >
+        <p> Item Number: {{item.itemID}} </p>
+
+        <p> Item Description: {{ item.itemDescription }} </p>
+
+        <p> Item Weight: {{ item.itemWeight }} </p>
+    </div>
+    
+    
+    {% csrf_token %}
+    {{form.as_p}}
+    <button name ="submit"> Place Order </button>
+
+</form>
+
+{%endblock content%}

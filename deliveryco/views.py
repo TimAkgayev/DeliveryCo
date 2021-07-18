@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Order, CargoItem
-#from .forms import OrderForm
+from .forms import OrderForm
 
 # Create your views here.
 
@@ -15,7 +15,6 @@ def orders(request):
     return render(request, 'deliveryco/orders.html', context)
 
 def order_particular(request, item_id):
-
     context = {}
 
     for item in CargoItem.objects.all():
@@ -24,17 +23,23 @@ def order_particular(request, item_id):
 
     return render(request, 'deliveryco/order.html', context)
 
-"""
-def new_order(request, item_id):
+
+def new_order(request, item_id):    
+    context = {}
+    
     if request.method != 'POST':
         # No data submitted; create a blank form.
         form = OrderForm()
-
-    context = {}
-
-    for item in CargoItem.objects.all():
-        if item.itemID == item_id:
-            context = {'item':item}
-
-    return render(request, 'deliveryco/new_order.html', context)
-"""
+        context['item'] = CargoItem.objects.get(id=item_id)
+              
+        
+    else: 
+        #POST data submitted; process data.
+        form = OrderForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('deliveryco:index')
+        
+    #Display a blank or invalid form
+    context['form'] = form
+    return render(request, 'deliveryco/orderform.html', context)

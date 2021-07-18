@@ -31,7 +31,7 @@
         <p> Item Weight: {{ item.itemWeight }} </p>
     </div>
     
-    <a href = "{%url 'deliveryco:order_particular' item.itemID %}" class = "OrderNowButton">Order Now</a>
+    <a href = "{%url 'deliveryco:new_order' item.itemID %}" class = "OrderNowButton">Order Now</a>
 </div>
 
 {% endblock content %}
