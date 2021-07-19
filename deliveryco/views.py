@@ -24,22 +24,22 @@ def order_particular(request, item_id):
     return render(request, 'deliveryco/order.html', context)
 
 
-def new_order(request, item_id):    
+def new_order(request, item_id):
     context = {}
-    
+
     if request.method != 'POST':
         # No data submitted; create a blank form.
         form = OrderForm()
-        context['item'] = CargoItem.objects.get(id=item_id)
-              
-        
-    else: 
+        context['item'] = CargoItem.objects.get(itemID=item_id)
+
+
+    else:
         #POST data submitted; process data.
         form = OrderForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('deliveryco:index')
-        
+
     #Display a blank or invalid form
     context['form'] = form
     return render(request, 'deliveryco/orderform.html', context)
