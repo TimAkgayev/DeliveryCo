@@ -1,22 +1,33 @@
 {% extends "deliveryco/base.html" %}
 
+{%block styleblock%}
+
+<style>
+.solid_divider {
+border-top: 3px solid #bbb;
+border-radius: 2px;
+}
+</style>
+{%endblock styleblock%}
+
 {%block content%}
 
-    <p> Your Order: </p>
+<h4> Your Order: </h4>
+
+{%load static%}<img src="{%static 'deliveryco/images/'%}{{item.itemImage}}">
+
+<div>
+   <p> Item Number: {{item.itemID}} </p>
+
+   <p> Item Description: {{ item.itemDescription }} </p>
+
+   <p> Item Weight: {{ item.itemWeight }} </p>
+</div>
+
+<hr class = "solid_divider">
 
 <form action = "{% url 'deliveryco:new_order' item.itemID %}" method ='post'>
 
-     {%load static%}<img src="{%static 'deliveryco/images/'%}{{item.itemImage}}">
-    
-     <div >
-        <p> Item Number: {{item.itemID}} </p>
-
-        <p> Item Description: {{ item.itemDescription }} </p>
-
-        <p> Item Weight: {{ item.itemWeight }} </p>
-    </div>
-    
-    
     {% csrf_token %}
     {{form.as_p}}
     <button name ="submit"> Place Order </button>
